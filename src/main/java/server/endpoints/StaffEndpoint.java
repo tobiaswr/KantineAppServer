@@ -49,23 +49,20 @@ public class StaffEndpoint {
     /**
      *
      * @param orderID
-     * @param jsonOrder
      * @return Response true or false
      * Changes the isReady boolean value in the database for the specified order (through the id) and returns a true or false entity in the response.
      */
     @Secured
     @POST
     @Path("/makeReady/{orderid}")
-    public Response makeReady(@PathParam("orderid") int orderID, String jsonOrder) {
-        jsonOrder = encryption.decryptXOR(jsonOrder);
-        Order orderReady = new Gson().fromJson(jsonOrder, Order.class);
+    public Response makeReady(@PathParam("orderid") int orderID) {
         int status = 500;
-        Boolean isReady = staffController.makeReady(orderID);
+        boolean isReady = staffController.makeReady(orderID);
 
         if (isReady) {
             status = 200;
             //Logging for order made ready
-            Globals.log.writeLog(getClass().getName(), this, "Created order with id: " + orderReady.getOrderId(), 0);
+            Globals.log.writeLog(getClass().getName(), this, "Created order with id: " + orderID, 0);
         }
         return Response
                 .status(status)
