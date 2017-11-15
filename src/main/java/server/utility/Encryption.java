@@ -20,69 +20,27 @@ public class Encryption {
 
     /**
      * Method responsible for encrypting a string using the XOR encryption
-     * @param toBeEncrypted the string to be encrypted
+     * @param input the string to be encrypted
      * @return the encrypted string if encryption is toggled
      */
-    public String encryptXOR(String toBeEncrypted) {
-
-        //check if encryption is true in the Config file
+    public String encryptXOR(String input) {
         if (Config.getENCRYPTION()) {
-            //Vi vælger selv værdierne til nøglen
-            char[] key = {'Y', 'O', 'L', 'O'};
-            //En StringBuilder er en klasse, der gør det muligt at ændre en string
-            StringBuilder isBeingEncrypted = new StringBuilder();
+            char[] key = {'K', 'C', 'Q'}; //Can be any chars, and any length array
+            StringBuilder output = new StringBuilder();
 
-            for (int i = 0; i < toBeEncrypted.length(); i++) {
-                isBeingEncrypted.append((char) (toBeEncrypted.charAt(i) ^ key[i % key.length]));
+            for (int i = 0; i < input.length(); i++) {
+                output.append((char) (input.charAt(i) ^ key[i % key.length]));
             }
 
-            //convert StringBuilder to String and parse as Json
-            String isEncrypted = new Gson().toJson(isBeingEncrypted.toString());
-
-            //reuturn encrypted String
-            return isEncrypted;
-        }else {
-            //if encryption is false in the Config file return default value
-            return toBeEncrypted;
+            return output.toString();
         }
-
+        else{
+            return input;
+        }
     }
 
     //method to decrypt a string parsed as Json
 
-    /**
-     * Method responsible for decrypting an encrypted string that has been encrypted by XOR
-     * @param toBeDecrypted encrypted string to be decrypted
-     * @return the plaintext string
-     */
-    public String decryptXOR(String toBeDecrypted) {
-
-        //check if encryption is true in the Config file
-        if (Config.getENCRYPTION()) {
-            //Parse Json with encrypted Json object to a String with the Encrypted Object thats no longer a Json ( {"rewqr"} => rewqr )
-            //then Decrypt the object and assign it as a Object in Json format ( rewqr => {"username":"..." }
-            toBeDecrypted = new Gson().fromJson(toBeDecrypted, String.class);
-
-            //Vi vælger selv værdierne til nøglen
-            char[] key = {'Y', 'O', 'L', 'O'};
-            //En StringBuilder er en klasse, der gør det muligt at ændre en string
-            StringBuilder beingDecrypted = new StringBuilder();
-
-            for (int i = 0; i < toBeDecrypted.length(); i++) {
-                beingDecrypted.append((char) (toBeDecrypted.charAt(i) ^ key[i % key.length]));
-            }
-
-            //convert StringBuilder to String
-            String isDecrypted = beingDecrypted.toString();
-
-            //return String
-            return isDecrypted;
-        }else {
-            //if encryption is false in the Config file return default value
-            return toBeDecrypted;
-        }
-
-    }
 
 }
 

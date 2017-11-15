@@ -77,7 +77,7 @@ public class StaffEndpoint {
     @POST
     @Path("/createItem")
     public Response createItem(String jsonItem){
-        jsonItem = encryption.decryptXOR(jsonItem);
+        jsonItem = encryption.encryptXOR(jsonItem);
         Item itemToBeCreated = new Gson().fromJson(jsonItem, Item.class);
         int status = 500;
         boolean result = staffController.createItem(itemToBeCreated.getItemName(), itemToBeCreated.getItemDescription(), itemToBeCreated.getItemPrice());

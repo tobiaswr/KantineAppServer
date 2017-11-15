@@ -39,7 +39,7 @@ public class UserEndpoint {
         try {
             //Parse Json with encrypted Json object to a String with the Encrypted Object thats no longer a Json ( {"rewqr"} => rewqr )
             //Then Decrypt the object and assign it as a Object in Json format ( rewqr => {"username":"..." }
-            jsonUser = encryption.decryptXOR(jsonUser);
+            jsonUser = encryption.encryptXOR(jsonUser);
             User userCreated = new Gson().fromJson(jsonUser, User.class);
             result = ucontroller.addUser(userCreated);
             status = 200;
@@ -80,7 +80,7 @@ public class UserEndpoint {
     public Response createOrder(String jsonOrder) {
         //Parse Json with encrypted Json object to a String with the Encrypted Object thats no longer a Json ( {"rewqr"} => rewqr )
         //Then Decrypt the object and assign it as a Object in Json format ( rewqr => {"username":"..." }
-        jsonOrder = encryption.decryptXOR(jsonOrder);
+        jsonOrder = encryption.encryptXOR(jsonOrder);
         // parse json object
         Order orderCreated = new Gson().fromJson(jsonOrder, Order.class);
         int status = 500;

@@ -26,7 +26,7 @@ public class RootEndpoint {
     public Response login(String userAsJson) {
         //if encryption is true in config file
         //decrypt userAsJson from a Json object containing a encrypted Json object to contain a decrypted Json object
-        userAsJson = encryption.decryptXOR(userAsJson);
+        userAsJson = encryption.encryptXOR(userAsJson);
         // parse json object
         User user = new Gson().fromJson(userAsJson, User.class);
         //Logikken der tjekker, hvorvidt en bruger findes eller ej
@@ -57,6 +57,7 @@ public class RootEndpoint {
     @POST
     @Path("/logout")
     public Response logout(String userAsJson) {
+        userAsJson = encryption.encryptXOR(userAsJson);
         User userFromJson = new Gson().fromJson(userAsJson, User.class);
         boolean deleted = auth.getMcontroller().deleteToken(userFromJson.getUserId());
         if (deleted){
