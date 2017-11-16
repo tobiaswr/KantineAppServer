@@ -25,7 +25,7 @@ public class Encryption {
      */
     public String encryptXOR(String input) {
         if (Config.getENCRYPTION()) {
-            char[] key = {'K', 'C', 'Q'}; //Can be any chars, and any length array
+            char[] key = {'Y', 'O', 'L', 'O'}; //Can be any chars, and any length array
             StringBuilder output = new StringBuilder();
 
             for (int i = 0; i < input.length(); i++) {
