@@ -41,7 +41,7 @@ public class StaffEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response
                 .entity(encryption.encryptXOR(ordersAsJson))
                 .build();
@@ -67,7 +67,7 @@ public class StaffEndpoint {
         }
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to client
                 .entity(encryption.encryptXOR("{\"isReady\":\"" + isReady + "\"}"))
                 .build();
@@ -95,7 +95,7 @@ public class StaffEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to clien before sending
                 .entity(encryption.encryptXOR("{\"itemCreated\":\"" + result + "\"}"))
                 .build();

@@ -61,7 +61,7 @@ public class UserEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to clien before sending
                 .entity(encryption.encryptXOR("{\"userCreated\":\""+ result +"\"}"))
                 .build();
@@ -99,7 +99,7 @@ public class UserEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to clien before sending
                 .entity(encryption.encryptXOR("{\"orderCreated\":\"" + result + "\"}"))
                 .build();
@@ -132,7 +132,7 @@ public class UserEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to clien before sending
                 .entity(encryption.encryptXOR(ordersAsJson))
                 .build();
@@ -159,7 +159,7 @@ public class UserEndpoint {
 
         return Response
                 .status(status)
-                .type("application/json")
+                .type("plain/text")
                 //encrypt response to clien before sending
                 .entity(encryption.encryptXOR(itemsAsJson))
                 .build();

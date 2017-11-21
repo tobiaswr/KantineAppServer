@@ -37,8 +37,8 @@ public class RootEndpoint {
             if (loginUser == null) {
                 return Response.status(401).type("plain/text").entity("User not authorized").build();
             } else {
-                //return encrypted object in Json format
-                return Response.status(200).type("application/json").entity(encryption.encryptXOR(jsonUser)).build();
+                //return encrypted object
+                return Response.status(200).type("plain/text").entity(encryption.encryptXOR(jsonUser)).build();
             }
 
         } catch (Exception e) {
