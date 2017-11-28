@@ -1,6 +1,5 @@
 package server.utility;
 
-import com.google.gson.Gson;
 import server.config.Config;
 
 public class Encryption {

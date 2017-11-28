@@ -8,6 +8,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import server.controllers.MainController;
 import server.database.DBConnection;
+import server.utility.Encryption;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -35,6 +36,7 @@ import java.util.Date;
 public class AuthenticationFilter implements ContainerRequestFilter {
     MainController mc;
     private static final String AUTHENTICATION_SCHEME = "Bearer";
+    Encryption encryption = new Encryption();
 
     /**
      * Only allows tokens that are authenticated to pass
