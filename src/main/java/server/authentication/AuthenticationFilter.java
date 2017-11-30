@@ -47,6 +47,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
         //Get the Authorization header from the request
+
         String authHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
         //Validate the Authorization header
@@ -57,7 +58,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
         //Extract the token from the Authorization header
         String token = authHeader.substring(AUTHENTICATION_SCHEME.length()).trim();
-
         try {
 
             //Validate the token
