@@ -8,6 +8,7 @@ import server.utility.Encryption;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 @Path("/start")
@@ -49,17 +50,15 @@ public class RootEndpoint {
 
     /**
      *
-     * @param userAsJson
+     * @param id
      * @return Plain text based on whether or not logout was successful.
      * Logout for users, deletes token in database (as well as all previous ones if they forgot to logout in an earlier visit).
      */
     @Secured
     @POST
-    @Path("/logout")
-    public Response logout(String userAsJson) {
-        userAsJson = encryption.encryptXOR(userAsJson);
-        User userFromJson = new Gson().fromJson(userAsJson, User.class);
-        boolean deleted = auth.getMcontroller().deleteToken(userFromJson.getUserId());
+    @Path("/logout/{id}")
+    public Response logout(@PathParam("id") int id) {
+        boolean deleted = auth.getMcontroller().deleteToken(id);
         if (deleted){
             return Response
                     .status(200)
